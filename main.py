@@ -4,7 +4,7 @@ import threading
 import os
 
 API_KEY = os.getenv("API_KEY")
-TICKERS = ["GME", "BTC-USD", "BITO"]
+TICKERS = ["GME", "MP", "BITO"]
 
 def on_message(ws, message):
     data = json.loads(message)
