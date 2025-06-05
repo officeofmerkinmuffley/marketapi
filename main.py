@@ -16,11 +16,12 @@ CRYPTO_SYMBOLS = ["BTC/USD"]
 STOCK_SYMBOLS = [
     "GME", "BITO", "MP", "UUUU", "REMX", "IBIT", "HUT", "MARA", "MSTR",
     "DJT", "NXTT", "YGME", "YBITO", "MSTY", "GRYP", "GITS", "BMGL",
-    "TSLA", "PLTR", "COIN", "HOOD","VIXW"
+    "TSLA", "PLTR", "COIN", "HOOD"
 ]
 
 CRYPTO_URL = "https://data.alpaca.markets/v1beta1/crypto/latest/bars"
 STOCK_URL_TEMPLATE = "https://data.alpaca.markets/v2/stocks/{}/quotes/latest"
+
 
 def fetch_crypto_bars():
     url = f"{CRYPTO_URL}?symbols={','.join(CRYPTO_SYMBOLS)}"
@@ -37,6 +38,7 @@ def fetch_crypto_bars():
     except requests.exceptions.RequestException as e:
         print(f"Crypto API Error: {e}")
 
+
 def fetch_stock_quotes():
     for symbol in STOCK_SYMBOLS:
         url = STOCK_URL_TEMPLATE.format(symbol)
@@ -47,6 +49,7 @@ def fetch_stock_quotes():
             print(f"[{symbol}] Bid: {quote.get('bp')} | Ask: {quote.get('ap')} | Time: {quote.get('t')}")
         except requests.exceptions.RequestException as e:
             print(f"Stock API Error for {symbol}: {e}")
+
 
 if __name__ == "__main__":
     while True:
