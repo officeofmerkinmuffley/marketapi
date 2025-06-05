@@ -1,47 +1,39 @@
-import websocket
-import json
-import threading
 import os
+import requests
+import time
 
-ALPACA_API_KEY = os.getenvAPKZVNC6QQMGCTLCBIKKB
-ALPACA_SECRET_KEY = os.getenv6ebIz1DxHXNvr8U3Tcw9CCcxDbkRdkp7rE6ioMIk
-BASE_URL = "https://paper-api.alpaca.markets/v2"
+# Load API keys from environment
+API_KEY = os.getenvPKZVNC6QQMGCTLCBIKKB
+API_SECRET = os.getenv6ebIz1DxHXNvr8U3Tcw9CCcxDbkRdkp7rE6ioMIk
 
-TICKERS = ["GME", "MP", "BITO"]
+HEADERS = {
+    PKZVNC6QQMGCTLCBIKKB: API_KEY,
+  6ebIz1DxHXNvr8U3Tcw9CCcxDbkRdkp7rE6ioMIk: API_SECRET
+}
 
-def on_message(ws, message):
-    data = json.loads(message)
-    for item in data:
-        if item.get('ev') == 'T':  # Trade event
-            print(f"[{item['sym']}] Price: {item['p']} | Size: {item['s']} | Timestamp: {item['t']}")
+SYMBOLS = ["BTC/USD", "GME/USD", "BITO/USD"]
 
-def on_error(ws, error):
-    print(f"WebSocket Error: {error}")
+BASE_URL = "https://data.alpaca.markets/v1beta1/crypto/latest/bars"
 
-def on_close(ws, close_status_code, close_msg):
-    print("WebSocket Closed")
+def fetch_latest_bars():
+    symbol_list = ",".join(SYMBOLS)
+    url = f"{BASE_URL}?symbols={symbol_list}"
+    try:
+        response = requests.get(url, headers=HEADERS)
+        response.raise_for_status()
+        data = response.json().get("bars", {})
 
-def on_open(ws):
-    auth_payload = {"action": "auth", "params": f"{API_KEY}"}
-    print(f"Sending auth: {auth_payload}")
-    ws.send(json.dumps(auth_payload))
+        for symbol in SYMBOLS:
+            bar = data.get(symbol)
+            if bar:
+                print(f"[{symbol}] Price: {bar['c']} | Volume: {bar['v']} | Time: {bar['t']}")
+            else:
+                print(f"[{symbol}] No data returned.")
 
-    for ticker in TICKERS:
-        sub_payload = {"action": "subscribe", "params": f"T.{ticker}"}
-        print(f"Subscribing to: {sub_payload}")
-        ws.send(json.dumps(sub_payload))
-
-
-
-def run_ws():
-    socket = "wss://socket.polygon.io/stocks"
-    ws = websocket.WebSocketApp(socket,
-                                on_open=on_open,
-                                on_message=on_message,
-                                on_error=on_error,
-                                on_close=on_close)
-    ws.run_forever()
+    except requests.exceptions.RequestException as e:
+        print(f"API Error: {e}")
 
 if __name__ == "__main__":
-    thread = threading.Thread(target=run_ws)
-    thread.start()
+    while True:
+        fetch_latest_bars()
+        time.sleep(30)  # Poll every 30 seconds
