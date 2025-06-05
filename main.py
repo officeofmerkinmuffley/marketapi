@@ -16,7 +16,7 @@ CRYPTO_SYMBOLS = ["BTC/USD"]
 STOCK_SYMBOLS = [
     "GME", "BITO", "MP", "UUUU", "REMX", "IBIT", "HUT", "MARA", "MSTR",
     "DJT", "NXTT", "YGME", "YBITO", "MSTY", "GRYP", "GITS", "BMGL",
-    "TSLA", "PLTR", "COIN", "HOOD"
+    "TSLA", "PLTR", "COIN", "HOOD","VIXW"
 ]
 
 CRYPTO_URL = "https://data.alpaca.markets/v1beta1/crypto/latest/bars"
