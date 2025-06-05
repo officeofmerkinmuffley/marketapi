@@ -3,8 +3,8 @@ import json
 import threading
 import os
 
-ALPACA_API_KEY = os.getenv("APKZVNC6QQMGCTLCBIKKB")
-ALPACA_SECRET_KEY = os.getenv("6ebIz1DxHXNvr8U3Tcw9CCcxDbkRdkp7rE6ioMIk")
+ALPACA_API_KEY = os.getenv(APKZVNC6QQMGCTLCBIKKB)
+ALPACA_SECRET_KEY = os.getenv(6ebIz1DxHXNvr8U3Tcw9CCcxDbkRdkp7rE6ioMIk)
 BASE_URL = "https://paper-api.alpaca.markets/v2"
 
 TICKERS = ["GME", "MP", "BITO"]
