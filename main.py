@@ -3,7 +3,10 @@ import json
 import threading
 import os
 
-API_KEY = os.getenv("API_KEY")
+ALPACA_API_KEY = os.getenv("APCA_API_KEY_ID")
+ALPACA_SECRET_KEY = os.getenv("APCA_API_SECRET_KEY")
+BASE_URL = "https://paper-api.alpaca.markets/v2"
+
 TICKERS = ["GME", "MP", "BITO"]
 
 def on_message(ws, message):
