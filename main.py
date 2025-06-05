@@ -31,7 +31,7 @@ def on_open(ws):
         print(f"Subscribing to: {sub_payload}")
         ws.send(json.dumps(sub_payload))
 
-print(f"Using API_KEY: {API_KEY}")
+print(f"Using API_KEY: {PKZVNC6QQMGCTLCBIKKB}")
 
 def run_ws():
     socket = "wss://socket.polygon.io/stocks"
