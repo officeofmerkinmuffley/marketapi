@@ -19,9 +19,15 @@ def on_close(ws, close_status_code, close_msg):
     print("WebSocket Closed")
 
 def on_open(ws):
-    ws.send(json.dumps({"action": "auth", "params": API_KEY}))
+    auth_payload = {"action": "auth", "params": f"{API_KEY}"}
+    print(f"Sending auth: {auth_payload}")
+    ws.send(json.dumps(auth_payload))
+
     for ticker in TICKERS:
-        ws.send(json.dumps({"action": "subscribe", "params": f"T.{ticker}"}))
+        sub_payload = {"action": "subscribe", "params": f"T.{ticker}"}
+        print(f"Subscribing to: {sub_payload}")
+        ws.send(json.dumps(sub_payload))
+
 print(f"Using API_KEY: {API_KEY}")
 
 def run_ws():
