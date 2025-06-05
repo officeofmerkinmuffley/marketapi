@@ -1,35 +1,23 @@
 import requests
-
-BOT_TOKEN = "7582265292:AAFAfiID2EjDbju20dtvLx5CJR-kCeyAm1s"
-USER_ID = 2075109889
-MESSAGE = "Test alert: Telegram bot push notifications are working."
-
-url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-payload = {
-    "chat_id": USER_ID,
-    "text": MESSAGE
-}
-
-response = requests.post(url, data=payload)
-
-print(response.status_code)
-print(response.text)
-
-
-import os
-import requests
 import time
+import os
 
+# Load API keys from environment variables (recommended for security)
 API_KEY = os.getenv("APCA_API_KEY")
 API_SECRET = os.getenv("APCA_API_SECRET")
 
 HEADERS = {
-    "APCA-API-KEY-ID": getenvPKZVNC6QQMGCTLCBIKKB
-    "APCA-API-SECRET-KEY": getenv6ebIz1DxHXNvr8U3Tcw9CCcxDbkRdkp7rE6ioMIk
+    "APCA-API-KEY-ID": API_KEY,
+    "APCA-API-SECRET-KEY": API_SECRET
 }
 
+# Define tickers
 CRYPTO_SYMBOLS = ["BTC/USD"]
-STOCK_SYMBOLS = ["GME", "BITO"]
+STOCK_SYMBOLS = [
+    "GME", "BITO", "MP", "UUUU", "REMX", "IBIT", "HUT", "MARA", "MSTR",
+    "DJT", "NXTT", "YGME", "YBITO", "MSTY", "GRYP", "GITS", "BMGL",
+    "TSLA", "PLTR", "COIN", "HOOD"
+]
 
 CRYPTO_URL = "https://data.alpaca.markets/v1beta1/crypto/latest/bars"
 STOCK_URL_TEMPLATE = "https://data.alpaca.markets/v2/stocks/{}/quotes/latest"
@@ -64,4 +52,4 @@ if __name__ == "__main__":
     while True:
         fetch_crypto_bars()
         fetch_stock_quotes()
-        time.sleep(30)
+        time.sleep(30)  # Poll every 30 seconds
