@@ -10,7 +10,8 @@ CRYPTO_SYMBOLS = ["BTC-USD"]
 STOCK_SYMBOLS = [
     "GME", "BITO", "MP", "UUUU", "REMX", "IBIT", "HUT", "MARA", "MSTR",
     "DJT", "NXTT", "YGME", "YBITO", "MSTY", "GRYP", "GITS", "BMGL",
-    "TSLA", "PLTR", "COIN", "HOOD","VIXX","SOFI","GDX","VYM","BWEB","WOLF","MARA","RIOT","SMLR","STRK","XYZ"
+    "TSLA", "PLTR", "COIN", "HOOD", "VIXX", "SOFI", "GDX", "VYM", "BWEB",
+    "WOLF", "RIOT", "SMLR", "STRK", "XYZ"
 ]
 
 # Polygon endpoints
