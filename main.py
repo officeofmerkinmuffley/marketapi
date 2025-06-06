@@ -2,7 +2,14 @@ import requests
 import time
 import os
 
+print("🧪 Entered main.py")
+
+
 POLYGON_API_KEY = os.getenv("POLYGON_API_KEY")
+
+import os
+print("🌍 POLYGON_API_KEY:", os.getenv("POLYGON_API_KEY"))
+
 
 
 print("🚀 Script started")
@@ -57,11 +64,12 @@ def fetch_stock_prices():
 
 
 if __name__ == "__main__":
-    print("📡 Entering polling loop...")
+print("🚦 Reached loop section")
     loop_counter = 0
 
     while True:
         try:
+
             print(f"\n🔁 Poll #{loop_counter}")
             fetch_crypto_prices()
             fetch_stock_prices()
