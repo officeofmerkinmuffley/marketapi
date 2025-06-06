@@ -2,7 +2,6 @@ import requests
 import time
 import os
 POLYGON_API_KEY = os.getenv("POLYGON_API_KEY")
-print("🌍 POLYGON_API_KEY loaded:", bool(POLYGON_API_KEY, flush=True))
 
 CRYPTO_SYMBOLS = [("BTC", "USD")]
 STOCK_SYMBOLS = ["AAPL", "TSLA"]
