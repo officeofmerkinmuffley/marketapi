@@ -2,6 +2,9 @@ import requests
 import time
 import os
 
+POLYGON_API_KEY = os.getenv("POLYGON_API_KEY")
+
+
 print("🚀 Script started")
 
 if not POLYGON_API_KEY:
