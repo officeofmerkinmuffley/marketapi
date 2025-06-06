@@ -6,7 +6,7 @@ import os
 POLYGON_API_KEY = os.getenv("POLYGON_API_KEY")
 
 # Define tickers
-CRYPTO_SYMBOLS = ["BTC-USD"]
+CRYPTO_SYMBOLS = [("BTC", "USD")]
 STOCK_SYMBOLS = [
     "GME", "BITO", "MP", "UUUU", "REMX", "IBIT", "HUT", "MARA", "MSTR",
     "DJT", "NXTT", "YGME", "YBITO", "MSTY", "GRYP", "GITS", "BMGL",
@@ -15,7 +15,7 @@ STOCK_SYMBOLS = [
 ]
 
 # Polygon endpoints
-CRYPTO_URL_TEMPLATE = "https://api.polygon.io/v1/last/crypto/{symbol}"
+url = f"https://api.polygon.io/v2/last/trade/crypto/{from_curr}/{to_curr}"
 STOCK_URL_TEMPLATE = "https://api.polygon.io/v2/last/trade/stocks/{symbol}"
 
 # Function to fetch crypto prices
