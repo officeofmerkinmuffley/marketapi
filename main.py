@@ -44,7 +44,6 @@ def fetch_crypto_prices():
         except Exception as e:
             print(f"❌ Crypto error: {e}")
 
-
 def fetch_stock_prices():
     for symbol in STOCK_SYMBOLS:
         url = STOCK_URL_TEMPLATE.format(symbol=symbol)
