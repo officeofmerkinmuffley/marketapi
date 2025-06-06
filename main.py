@@ -14,22 +14,20 @@ STOCK_SYMBOLS = [
     "BWEB", "WOLF", "RIOT", "SMLR", "STRK", "XYZ"
 ]
 
-# Polygon endpoints
-url = f"https://api.polygon.io/v2/last/trade/crypto/{from_curr}/{to_curr}"
-STOCK_URL_TEMPLATE = "https://api.polygon.io/v2/last/trade/stocks/{symbol}"
+CRYPTO_SYMBOLS = [("BTC", "USD")]
 
-# Function to fetch crypto prices
 def fetch_crypto_prices():
-    for symbol in CRYPTO_SYMBOLS:
-        url = CRYPTO_URL_TEMPLATE.format(symbol=symbol)
+    for from_curr, to_curr in CRYPTO_SYMBOLS:
+        url = f"https://api.polygon.io/v2/last/trade/crypto/{from_curr}/{to_curr}"
         params = {"apiKey": POLYGON_API_KEY}
         try:
             response = requests.get(url, params=params)
             response.raise_for_status()
-            data = response.json().get("last", {})
-            print(f"[Crypto {symbol}] Price: {data.get('price')} | Size: {data.get('size')} | Time: {data.get('timestamp')}")
+            data = response.json().get("data", {})
+            print(f"[Crypto {from_curr}-{to_curr}] Price: {data.get('p')} | Size: {data.get('s')} | Time: {data.get('t')}")
         except requests.exceptions.RequestException as e:
-            print(f"Crypto API Error for {symbol}: {e}")
+            print(f"Crypto API Error for {from_curr}-{to_curr}: {e}")
+
 
 # Function to fetch stock prices
 def fetch_stock_prices():
