@@ -10,15 +10,15 @@ CRYPTO_SYMBOLS = ["BTC-USD"]
 STOCK_SYMBOLS = [
     "GME", "BITO", "MP", "UUUU", "REMX", "IBIT", "HUT", "MARA", "MSTR",
     "DJT", "NXTT", "YGME", "YBITO", "MSTY", "GRYP", "GITS", "BMGL",
-    "TSLA", "PLTR", "COIN", "HOOD", "VIXX", "SOFI", "GDX", "VYM", "BWEB",
-    "WOLF", "RIOT", "SMLR", "STRK", "XYZ"
+    "TSLA", "PLTR", "COIN", "HOOD", "VIXX", "SOFI", "GDX", "VYM",
+    "BWEB", "WOLF", "RIOT", "SMLR", "STRK", "XYZ"
 ]
 
 # Polygon endpoints
 CRYPTO_URL_TEMPLATE = "https://api.polygon.io/v1/last/crypto/{symbol}"
 STOCK_URL_TEMPLATE = "https://api.polygon.io/v2/last/trade/stocks/{symbol}"
 
-
+# Function to fetch crypto prices
 def fetch_crypto_prices():
     for symbol in CRYPTO_SYMBOLS:
         url = CRYPTO_URL_TEMPLATE.format(symbol=symbol)
@@ -31,7 +31,7 @@ def fetch_crypto_prices():
         except requests.exceptions.RequestException as e:
             print(f"Crypto API Error for {symbol}: {e}")
 
-
+# Function to fetch stock prices
 def fetch_stock_prices():
     for symbol in STOCK_SYMBOLS:
         url = STOCK_URL_TEMPLATE.format(symbol=symbol)
@@ -44,7 +44,7 @@ def fetch_stock_prices():
         except requests.exceptions.RequestException as e:
             print(f"Stock API Error for {symbol}: {e}")
 
-
+# Main function to fetch data
 if __name__ == "__main__":
     while True:
         fetch_crypto_prices()
