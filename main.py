@@ -53,7 +53,7 @@ def fetch_stock_prices():
             print(f"[Stock {symbol}] Price: {data.get('p')} | Size: {data.get('s')} | Time: {data.get('t')}")
         except Exception as e:
             print(f"❌ Stock error: {e}")
-if __name__ == "__main__":
+if__name__ == "__main__":
 print("🚦 Reached loop section")
 loop_counter = 0
     while True:
