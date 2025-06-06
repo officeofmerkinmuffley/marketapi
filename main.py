@@ -3,14 +3,7 @@ import time
 import os
 
 print("🧪 Entered main.py")
-
-
 POLYGON_API_KEY = os.getenv("POLYGON_API_KEY")
-
-import os
-print("🌍 POLYGON_API_KEY:", os.getenv("POLYGON_API_KEY"))
-
-
 
 print("🚀 Script started")
 
