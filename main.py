@@ -62,19 +62,15 @@ def fetch_stock_prices():
         except Exception as e:
             print(f"❌ Stock error: {e}")
 
-
 if __name__ == "__main__":
 print("🚦 Reached loop section")
 loop_counter = 0
-
     while True:
         try:
-
             print(f"\n🔁 Poll #{loop_counter}")
             fetch_crypto_prices()
             fetch_stock_prices()
             loop_counter += 1
         except Exception as e:
             print(f"💥 Loop crashed: {e}")
-
         time.sleep(30)
