@@ -1,18 +1,15 @@
 import requests
 import time
 import os
-
-print("🧪 Entered main.py")
-
 POLYGON_API_KEY = os.getenv("POLYGON_API_KEY")
-print("🌍 POLYGON_API_KEY loaded:", bool(POLYGON_API_KEY))
+print("🌍 POLYGON_API_KEY loaded:", bool(POLYGON_API_KEY, flush=True))
 
 CRYPTO_SYMBOLS = [("BTC", "USD")]
 STOCK_SYMBOLS = ["AAPL", "TSLA"]
 
 STOCK_URL_TEMPLATE = "https://api.polygon.io/v2/last/trade/stocks/{symbol}"
 CRYPTO_URL_TEMPLATE = "https://api.polygon.io/v2/last/trade/crypto/{from_curr}/{to_curr}"
-
+PYTHONUNBUFFERED=1
 def fetch_crypto_prices():
     for from_curr, to_curr in CRYPTO_SYMBOLS:
         url = CRYPTO_URL_TEMPLATE.format(from_curr=from_curr, to_curr=to_curr)
