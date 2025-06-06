@@ -12,10 +12,6 @@ if not POLYGON_API_KEY:
 else:
     print("✅ POLYGON_API_KEY is loaded")
 
-
-# Load API key
-POLYGON_API_KEY = os.getenv("POLYGON_API_KEY")
-
 # Symbols
 CRYPTO_SYMBOLS = [("BTC", "USD")]
 STOCK_SYMBOLS = ["AAPL", "TSLA"]
