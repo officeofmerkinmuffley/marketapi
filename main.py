@@ -64,7 +64,7 @@ def fetch_stock_prices():
 
 
 if __name__ == "__main__":
-print("🚦 Reached loop section")
+   print("🚦 Reached loop section")
     loop_counter = 0
 
     while True:
