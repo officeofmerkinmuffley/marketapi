@@ -2,23 +2,20 @@ import requests
 import time
 import os
 
-# Load Polygon API key from environment
+# Load API key
 POLYGON_API_KEY = os.getenv("POLYGON_API_KEY")
 
-# Define tickers
+# Symbols
 CRYPTO_SYMBOLS = [("BTC", "USD")]
-STOCK_SYMBOLS = [
-    "GME", "BITO", "MP", "UUUU", "REMX", "IBIT", "HUT", "MARA", "MSTR",
-    "DJT", "NXTT", "YGME", "YBITO", "MSTY", "GRYP", "GITS", "BMGL",
-    "TSLA", "PLTR", "COIN", "HOOD", "VIXX", "SOFI", "GDX", "VYM",
-    "BWEB", "WOLF", "RIOT", "SMLR", "STRK", "XYZ"
-]
+STOCK_SYMBOLS = ["AAPL", "TSLA"]
 
-CRYPTO_SYMBOLS = [("BTC", "USD")]
+# URL templates
+STOCK_URL_TEMPLATE = "https://api.polygon.io/v2/last/trade/stocks/{symbol}"
+CRYPTO_URL_TEMPLATE = "https://api.polygon.io/v2/last/trade/crypto/{from_curr}/{to_curr}"
 
 def fetch_crypto_prices():
     for from_curr, to_curr in CRYPTO_SYMBOLS:
-        url = f"https://api.polygon.io/v2/last/trade/crypto/{from_curr}/{to_curr}"
+        url = CRYPTO_URL_TEMPLATE.format(from_curr=from_curr, to_curr=to_curr)
         params = {"apiKey": POLYGON_API_KEY}
         try:
             response = requests.get(url, params=params)
@@ -28,8 +25,6 @@ def fetch_crypto_prices():
         except requests.exceptions.RequestException as e:
             print(f"Crypto API Error for {from_curr}-{to_curr}: {e}")
 
-
-# Function to fetch stock prices
 def fetch_stock_prices():
     for symbol in STOCK_SYMBOLS:
         url = STOCK_URL_TEMPLATE.format(symbol=symbol)
@@ -42,9 +37,11 @@ def fetch_stock_prices():
         except requests.exceptions.RequestException as e:
             print(f"Stock API Error for {symbol}: {e}")
 
-# Main function to fetch data
 if __name__ == "__main__":
-    while True:
-        fetch_crypto_prices()
-        fetch_stock_prices()
-        time.sleep(30)  # Poll every 30 seconds
+    if not POLYGON_API_KEY:
+        print("⚠️  POLYGON_API_KEY not set")
+    else:
+        while True:
+            fetch_crypto_prices()
+            fetch_stock_prices()
+            time.sleep(30)
