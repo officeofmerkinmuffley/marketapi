@@ -2,6 +2,14 @@ import requests
 import time
 import os
 
+print("🚀 Script started")
+
+if not POLYGON_API_KEY:
+    print("❌ POLYGON_API_KEY is not set")
+else:
+    print("✅ POLYGON_API_KEY is loaded")
+
+
 # Load API key
 POLYGON_API_KEY = os.getenv("POLYGON_API_KEY")
 
@@ -38,10 +46,16 @@ def fetch_stock_prices():
             print(f"Stock API Error for {symbol}: {e}")
 
 if __name__ == "__main__":
-    if not POLYGON_API_KEY:
-        print("⚠️  POLYGON_API_KEY not set")
-    else:
-        while True:
+    print("📡 Entering polling loop...")
+    loop_counter = 0
+
+    while True:
+        try:
+            print(f"\n🔁 Poll #{loop_counter}")
             fetch_crypto_prices()
             fetch_stock_prices()
-            time.sleep(30)
+            loop_counter += 1
+        except Exception as e:
+            print(f"💥 Loop crashed: {e}")
+
+        time.sleep(30)
