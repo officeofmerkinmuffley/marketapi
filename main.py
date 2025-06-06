@@ -27,13 +27,15 @@ def fetch_crypto_prices():
         print(f"📡 [CRYPTO] Calling: {url}")
         try:
             response = requests.get(url, params=params)
-            print(f"🔍 [CRYPTO] Status: {response.status_code}")
-            print(f"🧾 [CRYPTO] Response Text: {response.text}")
+            print(f"🔍 [CRYPTO] Status Code: {response.status_code}")
+            print(f"🧾 [CRYPTO] Raw Text: {response.text}")
             response.raise_for_status()
-            data = response.json().get("data", {})
+            json_data = response.json()
+            print(f"✅ [CRYPTO] Parsed JSON: {json_data}")
+            data = json_data.get("data", {})
             print(f"[Crypto {from_curr}-{to_curr}] Price: {data.get('p')} | Size: {data.get('s')} | Time: {data.get('t')}")
         except Exception as e:
-            print(f"❌ Crypto API Error for {from_curr}-{to_curr}: {e}")
+            print(f"❌ Crypto error: {e}")
 
 
 def fetch_stock_prices():
@@ -43,13 +45,15 @@ def fetch_stock_prices():
         print(f"📡 [STOCK] Calling: {url}")
         try:
             response = requests.get(url, params=params)
-            print(f"🔍 [STOCK] Status: {response.status_code}")
-            print(f"🧾 [STOCK] Response Text: {response.text}")
+            print(f"🔍 [STOCK] Status Code: {response.status_code}")
+            print(f"🧾 [STOCK] Raw Text: {response.text}")
             response.raise_for_status()
-            data = response.json().get("results", {})
+            json_data = response.json()
+            print(f"✅ [STOCK] Parsed JSON: {json_data}")
+            data = json_data.get("results", {})
             print(f"[Stock {symbol}] Price: {data.get('p')} | Size: {data.get('s')} | Time: {data.get('t')}")
         except Exception as e:
-            print(f"❌ Stock API Error for {symbol}: {e}")
+            print(f"❌ Stock error: {e}")
 
 
 if __name__ == "__main__":
