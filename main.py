@@ -7,8 +7,8 @@ print("🌍 POLYGON_API_KEY loaded:", bool(POLYGON_API_KEY, flush=True))
 CRYPTO_SYMBOLS = [("BTC", "USD")]
 STOCK_SYMBOLS = ["AAPL", "TSLA"]
 
-STOCK_URL_TEMPLATE = "https://api.polygon.io/v2/last/trade/stocks/{symbol}"
-CRYPTO_URL_TEMPLATE = "https://api.polygon.io/v2/last/trade/crypto/{from_curr}/{to_curr}"
+CRYPTO_URL_TEMPLATE = "https://api.polygon.io/v1/last/crypto/{from_curr}/{to_curr}"
+STOCK_URL_TEMPLATE = "https://api.polygon.io/v2/last/trade/{symbol}"
 PYTHONUNBUFFERED=1
 def fetch_crypto_prices():
     for from_curr, to_curr in CRYPTO_SYMBOLS:
