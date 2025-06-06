@@ -22,7 +22,7 @@ def on_open(ws):
     ws.send(json.dumps({"action": "auth", "params": API_KEY}))
     for ticker in TICKERS:
         ws.send(json.dumps({"action": "subscribe", "params": f"T.{ticker}"}))
-print(f"Using API_KEY: {API_KEY}")
+
 
 def run_ws():
     socket = "wss://socket.polygon.io/stocks"
